@@ -65,4 +65,16 @@ export class movies extends connect {
         let res = await this.collection.find({$and: [{"character.rol": "principal"},{"character.apodo": "Miguel"}]}).toArray();
         return res[0]
     }
+
+    //9. Buscar películas que tengan al menos un formato con más de 100 copias:
+    async getCopiesAbove100(){
+        let res = await this.collection.find({"format.copies": {$gt: 100}}).toArray();
+        return res
+    }
+
+    //10. Buscar películas con un actor con id_actor 1:
+    async getActor1(){
+        let res = await this.collection.find({"character.id_actor": 1}).toArray();
+        return res
+    }
 }
