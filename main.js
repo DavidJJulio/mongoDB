@@ -5,4 +5,4 @@ import { movies } from './js/module/movies.js';
 // let obj2 = new connect("Carlos")
 // console.log(obj2)
 let mongo = new movies()
-console.log(await mongo.getBluray200());
+console.log(await mongo.getCobb());

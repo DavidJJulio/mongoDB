@@ -29,4 +29,16 @@ export class movies extends connect {
         let res = await this.collection.find({$and: [{"format.name": "Bluray"},{"format.copies": {$gt: 200}}]}, {projection: {}}).toArray();
         return res
     }
+
+    //3. Buscar películas donde el valor del formato "dvd" sea menor que 10:
+    async getDvDLower10(){
+        let res = await this.collection.find({format: {$elemMatch:{$and: [{name: {$eq: "dvd"}},{value:{$lt: 10}}]}}}).toArray();
+        return res
+    }
+
+    //4. Buscar películas con un personaje apodado "Cobb":
+    async getCobb(){
+        let res = await this.collection.find({"character.apodo": "Cobb"}).toArray();
+        return res[0]
+    }
 }
