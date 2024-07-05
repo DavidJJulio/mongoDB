@@ -25,12 +25,14 @@ export class movies extends connect {
     }
 
     //2. Buscar películas con más de 200 copias en formato "Bluray":
+    //12. Buscar películas con más de 200 copias en formato "Bluray":  
     async getBluray200(){
         let res = await this.collection.find({$and: [{"format.name": "Bluray"},{"format.copies": {$gt: 200}}]}, {projection: {}}).toArray();
         return res
     }
 
     //3. Buscar películas donde el valor del formato "dvd" sea menor que 10:
+    //13. Buscar películas donde el valor del formato "dvd" sea menor que 10:
     async getDvDLower10(){
         let res = await this.collection.find({format: {$elemMatch:{$and: [{name: {$eq: "dvd"}},{value:{$lt: 10}}]}}}).toArray();
         return res
@@ -61,6 +63,7 @@ export class movies extends connect {
     }
 
     //8. Buscar películas con un rol principal llamado "Miguel":
+    //15. Buscar películas con un rol principal y un apodo "Miguel":
     async getPrincipalMiguel(){
         let res = await this.collection.find({$and: [{"character.rol": "principal"},{"character.apodo": "Miguel"}]}).toArray();
         return res[0]
@@ -76,5 +79,17 @@ export class movies extends connect {
     async getActor1(){
         let res = await this.collection.find({"character.id_actor": 1}).toArray();
         return res
+    }
+
+    //11. Buscar películas con un personaje principal apodado "Cobb":
+    async getPrincipalCobb(){
+        let res = await this.collection.find({$and: [{"character.rol": "principal"},{"character.apodo": "Cobb"}]}).toArray();
+        return res[0]
+    }
+
+    //14. Buscar películas con un personaje secundario apodado "Arthur":
+    async getSecundaryArthur(){
+        let res = await this.collection.find({$and: [{"character.rol": "secundario"},{"character.apodo": "Arthur"}]}).toArray();
+        return res[0]
     }
 }
