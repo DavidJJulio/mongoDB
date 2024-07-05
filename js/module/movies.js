@@ -53,4 +53,16 @@ export class movies extends connect {
         let res = await this.collection.find({"format.name": "Bluray"}).toArray();
         return res
     }
+
+    //7. Buscar películas con el género "Ciencia Ficción":
+    async getCienciaFiccion(){
+        let res = await this.collection.find({genre: "Ciencia Ficción"}).toArray();
+        return res
+    }
+
+    //8. Buscar películas con un rol principal llamado "Miguel":
+    async getPrincipalMiguel(){
+        let res = await this.collection.find({$and: [{"character.rol": "principal"},{"character.apodo": "Miguel"}]}).toArray();
+        return res[0]
+    }
 }
