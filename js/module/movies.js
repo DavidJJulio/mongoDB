@@ -41,4 +41,16 @@ export class movies extends connect {
         let res = await this.collection.find({"character.apodo": "Cobb"}).toArray();
         return res[0]
     }
+
+    //5. Buscar películas con actores de id 2 y 3:
+    async getActor2And3(){
+        let res = await this.collection.find({"character.id_actor": {$in: [2,3]}}).toArray();
+        return res
+    }
+
+    //6. Buscar películas que tengan el formato "Bluray":
+    async getBluray(){
+        let res = await this.collection.find({"format.name": "Bluray"}).toArray();
+        return res
+    }
 }
